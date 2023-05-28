@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize()
                     ){
                         OutlinedTextField(
-                            value =name,
+                            value = name,
                             onValueChange = { text ->
                                 name = text
                             },
@@ -65,27 +65,35 @@ class MainActivity : ComponentActivity() {
                                 names = names + name
                                 name = ""
                             }
-
-
                         }) {
                             Text(text = "Add")
                         }
                     }
-                    LazyColumn {
-                        items(names){ currentName ->
-                            Text(text = currentName,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(16.dp)
-                            )
-                            Divider()
-                        }
-                    }
-                }
 
+                    NameList(names = names)
+
+                }
             }
         }
     }
+}
+
+@Composable
+fun NameList(names : List<String>,
+             modifier: Modifier = Modifier
+
+) {
+    LazyColumn(modifier) {
+        items(names){ currentName ->
+            Text(text = currentName,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
+            Divider()
+        }
+    }
+
 }
 
 
